@@ -295,13 +295,11 @@
                       @input="clearFieldError(FieldName.Description)"
                     ></textarea>
                   </template>
-                  <!-- eslint-disable vue/no-v-html -->
-                  <div
+                  <omegaup-markdown
                     v-else
+                    :markdown="description"
                     class="wmd-preview border rounded p-2"
-                    v-html="descriptionPreviewHtml"
-                  ></div>
-                  <!-- eslint-enable vue/no-v-html -->
+                  ></omegaup-markdown>
                   <small
                     class="character-counter"
                     :class="{ 'text-danger': isExceedingDescription }"
@@ -944,6 +942,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { isValidAlias } from '../../validators';
 import * as Markdown from '@/third_party/js/pagedown/Markdown.Editor.js';
 import * as markdownModule from '../../markdown';
+import omegaup_Markdown from '../Markdown.vue';
 library.add(fas);
 
 Vue.use(VueCookies, { expires: -1 });
@@ -1109,6 +1108,7 @@ const markdownConverter = new markdownModule.Converter({ preview: true });
     'font-awesome-icon': FontAwesomeIcon,
     'font-awesome-layers': FontAwesomeLayers,
     'font-awesome-layers-text': FontAwesomeLayersText,
+    'omegaup-markdown': omegaup_Markdown,
     Multiselect,
   },
   directives: {
@@ -1581,10 +1581,6 @@ export default class Form extends Vue {
       this.description.length >
       MAX_LENGTH.description * DANGER_THRESHOLD_PERCENTAGE
     );
-  }
-
-  get descriptionPreviewHtml(): string {
-    return markdownConverter.makeHtml(this.description);
   }
 
   onRemove(language: string) {
