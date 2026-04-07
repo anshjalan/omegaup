@@ -225,7 +225,7 @@
                       <font-awesome-icon icon="calendar-alt" />
                       <a
                         :href="getTimeLink(contestItem.finish_time)"
-                        :title="exactContestDate(contestItem.finish_time)"
+                        :title="exactContestDateTime(contestItem.finish_time)"
                       >
                         {{ currentContestDate(contestItem) }}
                       </a>
@@ -234,7 +234,7 @@
                       <font-awesome-icon icon="calendar-alt" />
                       <a
                         :href="getTimeLink(contestItem.start_time)"
-                        :title="exactContestDate(contestItem.start_time)"
+                        :title="exactContestDateTime(contestItem.start_time)"
                       >
                         {{ futureContestDate(contestItem) }}
                       </a>
@@ -243,7 +243,7 @@
                       <font-awesome-icon icon="calendar-alt" />
                       <a
                         :href="getTimeLink(contestItem.finish_time)"
-                        :title="exactContestDate(contestItem.finish_time)"
+                        :title="exactContestDateTime(contestItem.finish_time)"
                       >
                         {{ pastContestDate(contestItem) }}
                       </a>
@@ -363,7 +363,7 @@
                   <font-awesome-icon icon="calendar-alt" />
                   <a
                     :href="getTimeLink(contestItem.finish_time)"
-                    :title="exactContestDate(contestItem.finish_time)"
+                    :title="exactContestDateTime(contestItem.finish_time)"
                   >
                     {{ currentContestDate(contestItem) }}
                   </a>
@@ -372,7 +372,7 @@
                   <font-awesome-icon icon="calendar-alt" />
                   <a
                     :href="getTimeLink(contestItem.start_time)"
-                    :title="exactContestDate(contestItem.start_time)"
+                    :title="exactContestDateTime(contestItem.start_time)"
                   >
                     {{ futureContestDate(contestItem) }}
                   </a>
@@ -381,7 +381,7 @@
                   <font-awesome-icon icon="calendar-alt" />
                   <a
                     :href="getTimeLink(contestItem.finish_time)"
-                    :title="exactContestDate(contestItem.finish_time)"
+                    :title="exactContestDateTime(contestItem.finish_time)"
                   >
                     {{ pastContestDate(contestItem) }}
                   </a>
@@ -792,8 +792,8 @@ class ArenaContestList extends Vue {
     return time.getDisplayForPastContest(contest.finish_time);
   }
 
-  exactContestDate(date: Date): string {
-    return time.formatDateForContest(date);
+  exactContestDateTime(date: Date): string {
+    return `${time.formatDateForContest(date)}, ${date.toLocaleTimeString()}`;
   }
 
   getTimeLink(time: Date): string {
