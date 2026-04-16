@@ -202,7 +202,18 @@ export default class UserCharts extends Vue {
         delta: [],
         cumulative: [],
       };
-      const verdicts = ['AC', 'PA', 'WA', 'TLE', 'RTE', 'CE', 'JE', 'MLE', 'OLE', 'VE'];
+      const verdicts = [
+        'AC',
+        'PA',
+        'WA',
+        'TLE',
+        'RTE',
+        'CE',
+        'JE',
+        'MLE',
+        'OLE',
+        'VE',
+      ];
       for (const verdict of verdicts) {
         runsByVerdict[period][verdict] = 0;
       }
